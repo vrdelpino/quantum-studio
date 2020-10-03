@@ -1,2 +1,10 @@
-# quantum-studio
-Environment for running Quantum Projects using all available languages
+# Quantum Studio
+
+Docker image with Jupyter Notebook and Quantum environments for development purposes.
+
+## Contents
+
+## How to build the environment
+
+## How to run it. 
+

@@ -1,0 +1,5 @@
+jupyterlab
+notebook
+qiskit[visualization]
+jupyterthemes
+jupyter_contrib_nbextensions
