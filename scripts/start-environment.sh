@@ -14,4 +14,4 @@ echo "Starting Jupyter Notebook"
 mv /jupyter_notebook_config.json /root/.jupyter/jupyter_notebook_config.json
 
 # Start the services
-jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --notebook-dir=/quantum_studio/data
+jupyter notebook --ip=0.0.0.0 --port=8080 --allow-root --no-browser --notebook-dir=/root/quantum_studio/data/

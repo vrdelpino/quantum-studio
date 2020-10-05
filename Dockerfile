@@ -24,11 +24,46 @@ RUN chmod 777 /jupyter_notebook_config.json
 
 ####################################################################################################
 ####################################################################################################
+##                                     INSTALL .NET SDK 3.1                                       ##
+####################################################################################################
+####################################################################################################
+
+# APT-Transport-HTTPS is necessary before installing packages-microsoft-prod.deb
+RUN apt-get update && \
+  apt-get install -y apt-transport-https
+
+# Download packages needed
+RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+
+# .NET will be necessary to run IQ#
+RUN apt-get update && \
+  apt-get install -y dotnet-sdk-3.1
+
+####################################################################################################
+####################################################################################################
 ##                                INSTALL Python Dependencies                                     ##
 ####################################################################################################
 ####################################################################################################
+# Get all the libraries needed for Python from our requirements file.
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -q -r requirements.txt
+
+# Automatically review all packages installed and upgrade them.
+# This is done to enforce Jupyter-Client versions are aligned.
+RUN pip-upgrade
+
+####################################################################################################
+####################################################################################################
+##                                INSTALL .NET IQSharp Engine                                     ##
+####################################################################################################
+####################################################################################################
+
+RUN dotnet tool install -g Microsoft.Quantum.IQSharp
+RUN export PATH="/home/root/.dotnet/tools:$PATH"
+RUN ~/.dotnet/tools/dotnet-iqsharp install --path-to-tool="$(which dotnet-iqsharp)"
+
+
 
 ####################################################################################################
 ####################################################################################################
@@ -37,7 +72,6 @@ RUN pip install -r requirements.txt
 ####################################################################################################
 ####################################################################################################
 RUN jupyter contrib nbextension install --system
-RUN jt -t onedork -fs 95 -altp -tfs 11 -nfs 115 -cellw 88% -T
 
 #################################################################################################
 #################################################################################################

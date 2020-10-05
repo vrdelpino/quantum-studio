@@ -1,5 +1,10 @@
 jupyterlab
+jupyter_client
+pip-upgrader
+matplotlib
 notebook
 qiskit[visualization]
 jupyterthemes
 jupyter_contrib_nbextensions
+qsharp
+cirq
