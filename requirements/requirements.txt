@@ -1,10 +1,8 @@
 jupyterlab
 jupyter_client
-pip-upgrader
 matplotlib
 notebook
-qiskit[visualization]
+nb_conda
+nb_conda_kernels
 jupyterthemes
 jupyter_contrib_nbextensions
-qsharp
-cirq

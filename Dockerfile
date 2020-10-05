@@ -1,9 +1,11 @@
 # The base image for our Docker image it will be Python
 # From the Python base we'll include the tools needed (we'll use for this image Python 3.7)
-FROM python:3.7-stretch
+FROM continuumio/conda-ci-linux-64-python3.7
 
 # Labels
 LABEL "maintainer"="Vicente Ruben Del Pino Ruiz (https://www.linkedin.com/in/vrdelpino/)"
+
+USER root
 
 ####################################################################################################
 ####################################################################################################
@@ -46,12 +48,21 @@ RUN apt-get update && \
 ####################################################################################################
 ####################################################################################################
 # Get all the libraries needed for Python from our requirements file.
-RUN pip install --upgrade pip
-RUN pip install -q -r requirements.txt
+RUN conda update conda
+RUN conda config --add channels conda-forge
+RUN conda install --file requirements.txt
+RUN conda install pip
 
-# Automatically review all packages installed and upgrade them.
-# This is done to enforce Jupyter-Client versions are aligned.
-RUN pip-upgrade
+RUN pip install --upgrade pip
+RUN pip install qiskit
+RUN pip install qiskit[visualization]
+RUN pip install qsharp
+RUN pip install cirq
+RUN pip install jupyterthemes
+RUN pip install jupyter_contrib_nbextensions
+RUN pip install qrng
+RUN pip install ipyparallel
+RUN ipcluster nbextension enable
 
 ####################################################################################################
 ####################################################################################################
@@ -63,7 +74,14 @@ RUN dotnet tool install -g Microsoft.Quantum.IQSharp
 RUN export PATH="/home/root/.dotnet/tools:$PATH"
 RUN ~/.dotnet/tools/dotnet-iqsharp install --path-to-tool="$(which dotnet-iqsharp)"
 
+####################################################################################################
+####################################################################################################
+##                                 CONDA Environment for Q#                                       ##
+####################################################################################################
+####################################################################################################
 
+RUN conda init bash
+RUN conda create -n qsharp-env -c quantum-engineering qsharp notebook
 
 ####################################################################################################
 ####################################################################################################
@@ -72,6 +90,7 @@ RUN ~/.dotnet/tools/dotnet-iqsharp install --path-to-tool="$(which dotnet-iqshar
 ####################################################################################################
 ####################################################################################################
 RUN jupyter contrib nbextension install --system
+RUN jt -t monokai -f fira -fs 10 -nf ptsans -nfs 11 -N -kl -cursw 2 -cursc r -cellw 95% -T
 
 #################################################################################################
 #################################################################################################
