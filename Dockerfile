@@ -24,7 +24,8 @@ COPY configuration/jupyter_notebook_config.json /jupyter_notebook_config.json
 
 # Modify access to the files for the rest of the process
 RUN chmod 777 /start-environment.sh
-RUN chmod 777 /requirements.txt
+RUN chmod 777 /pip-requirements.txt
+RUN chmod 777 /conda-requirements.txt
 RUN chmod 777 /jupyter_notebook_config.json
 
 ####################################################################################################
