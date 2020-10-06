@@ -54,8 +54,23 @@ To stop the image, run the following script:
 
 ## 4. Kernels included
 
+The environment includes 3 environments, two Python and one for Q#:
+
+![Kernels](snapshots/Kernels.png)
+
+
 ### 4.1. Python 3
-### 4.2. IQ#
+
+Within Python3, there are two options: 
+* Python [conda env: root]. Main kernel, here are all the quantum packages needed to run the Quantum experiments in Python.
+* Python [conda env: qsharp-env]. This kernel has the ability of running Q# code within Python.
+
+
+### 4.2. Q#
+
+For Q#, only kernel included is:
+* Q# [conda env:qsharp-env]. Here will execute Q# code in Jupyter Notebook.
+
 
 ## 5. Examples included in the environment
 
@@ -64,11 +79,21 @@ To stop the image, run the following script:
 A Jupyter notebook and a Q# file to perform a random number generator:
 * Operation.qs: File with the Q# code to run random number generation.
 
+![Q# Code](snapshots/Q Code.png)
 
-* IQ#-Test.ipynb: Jupyter Notebook to run Q# and include it in Python. 
+
+* IQ#-Test.ipynb: Python Jupyter Notebook to execute Q#. 
+
+![Q# Notebook](snapshots/Q Notebook.png)
 
 
 ### 5.2. Qiskit - Bell TEst
 
 A Jupyter notebook to run Bell test using Qiskit.
 * Qiskit-Test.ipynb
+
+![Qiskit Notebook](snapshots/Qiskit Code 1.png)
+![Qiskit Notebook](snapshots/Qiskit Code 2.png)
+![Qiskit Notebook](snapshots/Qiskit Code 3.png)
+
+
