@@ -18,8 +18,8 @@ RUN mkdir -p quantum_studio/examples
 
 # Copy the start-services script
 COPY scripts/start-environment.sh /start-environment.sh
-COPY requirements/requirements.txt /conda-requirements.txt
-COPY requirements/requirements.txt /pip-requirements.txt
+COPY requirements/conda-requirements.txt /conda-requirements.txt
+COPY requirements/pip-requirements.txt /pip-requirements.txt
 COPY configuration/jupyter_notebook_config.json /jupyter_notebook_config.json
 
 # Modify access to the files for the rest of the process
