@@ -1,0 +1,8 @@
+qiskit
+qiskit[visualization]
+qsharp
+cirq
+jupyterthemes
+jupyter_contrib_nbextensions
+qrng
+ipyparallel

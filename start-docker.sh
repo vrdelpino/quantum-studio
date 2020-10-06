@@ -13,4 +13,4 @@ echo "#####################################################"
 echo "##  !!!!!!!Password: 'quantum-studio-user'         ##"
 echo "#####################################################"
 echo "#####################################################"
-docker run -d --name quantum-studio -p 8080:8080 -v "$(pwd)"/data:/root/quantum_studio/data quantum-studio
+docker run -d --name quantum-studio -p 8080:8080 -v "$(pwd)"/examples:/root/quantum_studio/examples quantum-studio

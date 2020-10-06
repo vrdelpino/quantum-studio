@@ -5,6 +5,7 @@ FROM continuumio/conda-ci-linux-64-python3.7
 # Labels
 LABEL "maintainer"="Vicente Ruben Del Pino Ruiz (https://www.linkedin.com/in/vrdelpino/)"
 
+# Get privileges to install all packages needed
 USER root
 
 ####################################################################################################
@@ -13,13 +14,14 @@ USER root
 ####################################################################################################
 ####################################################################################################
 # Create directories for notebooks
-RUN mkdir -p quantum_studio/data
+RUN mkdir -p quantum_studio/examples
 
 # Copy the start-services script
 COPY scripts/start-environment.sh /start-environment.sh
 COPY requirements/requirements.txt /requirements.txt
 COPY configuration/jupyter_notebook_config.json /jupyter_notebook_config.json
 
+# Modify access to the files for the rest of the process
 RUN chmod 777 /start-environment.sh
 RUN chmod 777 /requirements.txt
 RUN chmod 777 /jupyter_notebook_config.json
@@ -48,20 +50,15 @@ RUN apt-get update && \
 ####################################################################################################
 ####################################################################################################
 # Get all the libraries needed for Python from our requirements file.
+# Conda Packages
 RUN conda update conda
 RUN conda config --add channels conda-forge
-RUN conda install --file requirements.txt
-RUN conda install pip
+RUN conda install --file conda-requirements.txt
 
+# PIP Packages
+RUN conda install pip
 RUN pip install --upgrade pip
-RUN pip install qiskit
-RUN pip install qiskit[visualization]
-RUN pip install qsharp
-RUN pip install cirq
-RUN pip install jupyterthemes
-RUN pip install jupyter_contrib_nbextensions
-RUN pip install qrng
-RUN pip install ipyparallel
+RUN pip install -r pip-requirements.txt
 RUN ipcluster nbextension enable
 
 ####################################################################################################
@@ -69,6 +66,7 @@ RUN ipcluster nbextension enable
 ##                                INSTALL .NET IQSharp Engine                                     ##
 ####################################################################################################
 ####################################################################################################
+# Install all the dotnet utilities needed for IQSharp Engine (for Jupyter Notebook)
 
 RUN dotnet tool install -g Microsoft.Quantum.IQSharp
 RUN export PATH="/home/root/.dotnet/tools:$PATH"
@@ -79,8 +77,9 @@ RUN ~/.dotnet/tools/dotnet-iqsharp install --path-to-tool="$(which dotnet-iqshar
 ##                                 CONDA Environment for Q#                                       ##
 ####################################################################################################
 ####################################################################################################
-
+# Make conda environments available in bash
 RUN conda init bash
+# Create qsharp-env needed for running Q# experiments
 RUN conda create -n qsharp-env -c quantum-engineering qsharp notebook
 
 ####################################################################################################
@@ -89,7 +88,9 @@ RUN conda create -n qsharp-env -c quantum-engineering qsharp notebook
 ##                            Enable Dark Mode in Jupyter Notebook                                ##
 ####################################################################################################
 ####################################################################################################
+# Extensions for our Jupyter Notebook
 RUN jupyter contrib nbextension install --system
+# Improving Jupyter Notebook with dark theme for easier visualization
 RUN jt -t monokai -f fira -fs 10 -nf ptsans -nfs 11 -N -kl -cursw 2 -cursc r -cellw 95% -T
 
 #################################################################################################

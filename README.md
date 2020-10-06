@@ -22,7 +22,7 @@ Password is: 'quantum-studio-user'
 
 Jupyter Notebook root folder is mapped to the data folder provided within the same location of the image.
 
-All notebooks created within the image will be available in the data folder. All examples shipped with the image will 
+All notebooks created within the image will be available in the examples folder. All examples shipped with the image will 
 be provided within this folder.
  
 ## 2. How to build the environment
