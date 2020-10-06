@@ -2,6 +2,8 @@
 
 Docker image with Jupyter Notebook and Quantum environments for development purposes.
 
+Docker image available as well on Docker Hub on: rubendelpino/quantum-studio
+
 # Table of Contents
 
 ###  1. [Introduction](#T1)
@@ -60,7 +62,7 @@ To start up the image, run the following script:
 To stop the image, run the following script:
 
 ```
-   ./stop-docker-all.sh 
+   ./stop-docker-all.sh
 ```
 
 **Important!** stop-docker-all.sh will stop, and destroy all docker images running in your laptop.
