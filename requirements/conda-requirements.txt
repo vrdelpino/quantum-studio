@@ -1,6 +1,8 @@
 jupyterlab
 jupyter_client
 matplotlib
+pandas
+scikit-learn
 notebook
 nb_conda
 nb_conda_kernels

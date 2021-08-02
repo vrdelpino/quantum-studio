@@ -16,14 +16,11 @@ Docker image available as well on Docker Hub on: rubendelpino/quantum-studio
 
 
 ## <a name="T1"></a> 1. Introduction
-This image is based on Python 3.7.2 on Debian Linux (Conda Distribution).
+This image is based on Python 3.9 on Debian Linux (Conda Distribution).
 
 Packages installed are:
 * qiskit
-* qsharp
-* cirq
-* tensorflow
-* tensorflow-quantum
+
 
 Jupyter Notebook includes themes available for dark mode and NBExtensions installed.
 
@@ -35,7 +32,7 @@ Password is: 'quantum-studio-user'
 
 Jupyter Notebook root folder is mapped to the data folder provided within the same location of the image.
 
-All notebooks created within the image will be available in the examples folder. All examples shipped with the image will 
+All notebooks created within the image will be available in the code-snippets folder. All examples shipped with the image will 
 be provided within this folder.
  
 ## <a name="T3"></a>  3. How to build the environment
@@ -75,41 +72,25 @@ The environment includes 3 environments, two Python and one for Q#:
 ![Kernels](snapshots/Kernels.png)
 
 
-### 4.1. Python 3
+### 5.1. Python 3
 
 Within Python3, there are two options: 
 * Python [conda env: root]. Main kernel, here are all the quantum packages needed to run the Quantum experiments in Python.
-* Python [conda env: qsharp-env]. This kernel has the ability of running Q# code within Python.
 
 
-### 4.2. Q#
 
-For Q#, only kernel included is:
-* Q# [conda env:qsharp-env]. Here will execute Q# code in Jupyter Notebook.
+## <a name="T6"></a> 6. Examples included in the environment 
 
+These examples are available as well in my other repository Quantum Experiments with a full explanation (https://github.com/vrdelpino/Quantum-Computing-Experiments )
 
-## <a name="T6"></a> 6. Examples included in the environment
-
-### 5.1. Q# - Random Number Generator
-
-A Jupyter notebook and a Q# file to perform a random number generator:
-* Operation.qs: File with the Q# code to run random number generation.
-
-![Q# Code](snapshots/Q Code.png)
-
-
-* IQ#-Test.ipynb: Python Jupyter Notebook to execute Q#. 
-
-![Q# Notebook](snapshots/Q Notebook.png)
-
-
-### 5.2. Qiskit - Bell TEst
+### 6.1. Qiskit - Bell Test
 
 A Jupyter notebook to run Bell test using Qiskit.
 * Qiskit-Test.ipynb
 
-![Qiskit Notebook](snapshots/Qiskit Code 1.png)
-![Qiskit Notebook](snapshots/Qiskit Code 2.png)
-![Qiskit Notebook](snapshots/Qiskit Code 3.png)
+![Qiskit Notebook](snapshots/Qiskit-Code-1.png)
+![Qiskit Notebook](snapshots/Qiskit-Code-2.png)
+![Qiskit Notebook](snapshots/Qiskit-Code-3.png)
+
 
 
